@@ -15,15 +15,9 @@ connectDB();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(
-  cors({
-    origin: process.env.CLIENT_URL,
-    // origin: "*",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-  })
-);
 
+// Use CORS middleware
+app.use(cors());
 app.use("/api/auth", authRouter);
 app.use("/api/budget", budgetRouter);
 app.use("/api/expense", expenseRouter);
