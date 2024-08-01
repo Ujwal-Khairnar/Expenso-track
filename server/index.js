@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(
   cors({
-    origin: 'https://expenso-track-gex7.vercel.app',
+    origin: 'ujwal-expenso-track.vercel.app',
     // origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
