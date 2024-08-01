@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
+    origin: 'https://expenso-track-gex7.vercel.app/',
     // origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
@@ -32,7 +32,6 @@ app.use("/api/stats", statsRouter);
 app.get("/", (req, res) => {
   return res.status(200).send({
     message: "Expense Tracker Base Route",
-    client: process.env.CLIENT_URL,
   });
 });
 
