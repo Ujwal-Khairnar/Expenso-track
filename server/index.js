@@ -15,25 +15,15 @@ connectDB();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL,
+    // origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 
-// CORS configuration
-const allowedOrigins = [
-  'https://expenso-track-gex7.vercel.app', 
-  'https://another-allowed-origin.com'
-];
-
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (allowedOrigins.includes(origin) || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true, // if you need to include credentials like cookies, HTTP authentication
-};
-
-app.use(cors(corsOptions));
 app.use("/api/auth", authRouter);
 app.use("/api/budget", budgetRouter);
 app.use("/api/expense", expenseRouter);
@@ -46,7 +36,11 @@ app.get("/", (req, res) => {
   });
 });
 
-// Error handling middleware
+// app.use((err, req, res, next) => {
+//   console.log(err);
+//   res.status(500).send({ success: false, message: "Server Error" });
+// });
+
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
   const message = err.message || "Internal server error";
