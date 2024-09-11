@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(
   cors({
-    origin: '*', // Allow all origins for testing
+    origin: 'https://ujwal-expenso-track.vercel.app',
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
